@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { ChevronDown, CirclePlay, House, LogIn, Menu, MessageSquare, Phone, Plane } from "lucide-react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 export default function Header() {
     return (
@@ -43,6 +43,13 @@ export default function Header() {
                         <Link href="/" className="relative before:content-[''] before:absolute before:bottom-[-2px] before:left-0 before:w-0 before:h-[3px] before:bg-blue-500 before:transition-all hover:before:w-full">Attractions</Link>
                         <Link href="/" className="relative before:content-[''] before:absolute before:bottom-[-2px] before:left-0 before:w-0 before:h-[3px] before:bg-blue-500 before:transition-all hover:before:w-full">Airport taxis</Link>
                     </nav>
+                    <DialogFooter>
+                        <button type="button" className="flex justify-center items-center gap-2 font-medium relative before:content-[''] before:absolute before:bottom-[-4px] before:left-0 before:w-0 before:h-[3px] before:bg-black before:transition-all hover:before:w-full">
+                            <span className="sr-only">Login Button</span>
+                            <span>Login</span>
+                            <LogIn />
+                        </button>
+                    </DialogFooter>
                 </DialogContent>
             </Dialog>
             <nav className="hidden lg:block">

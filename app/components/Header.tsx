@@ -3,11 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { ChevronDown, House, MessageSquare, Plane } from "lucide-react";
+import { ChevronDown, CirclePlay, House, LogIn, Menu, MessageSquare, Phone, Plane } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 export default function Header() {
     return (
-        <header className="flex items-center justify-between bg-blue-800 p-4">
+        <header className="flex items-center justify-between lg:justify-around bg-blue-800 p-4">
             <Link href="/">
                 <span className="sr-only">Booking.com</span>
                 <Image
@@ -17,8 +18,34 @@ export default function Header() {
                     alt="Booking.com logo"
                 />
             </Link>
-
-            <nav>
+            <Dialog>
+                <DialogTrigger asChild>
+                    <button type="button" className="text-white lg:hidden">
+                        <span className="sr-only">Open Main Menu</span>
+                        <Menu />
+                    </button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                        <DialogTitle className="flex justify-center items-center">
+                            <Image
+                                src="/booking-logo-azul.png"
+                                width={150}
+                                height={100}
+                                alt="Booking.com logo"
+                            />
+                        </DialogTitle>
+                    </DialogHeader>
+                    <nav className="flex flex-col justify-center items-center gap-4 font-medium text-lg text-blue-500">
+                        <Link href="/" className="relative before:content-[''] before:absolute before:bottom-[-2px] before:left-0 before:w-0 before:h-[3px] before:bg-blue-500 before:transition-all hover:before:w-full">Stays</Link>
+                        <Link href="/" className="relative before:content-[''] before:absolute before:bottom-[-2px] before:left-0 before:w-0 before:h-[3px] before:bg-blue-500 before:transition-all hover:before:w-full">Flights</Link>
+                        <Link href="/" className="relative before:content-[''] before:absolute before:bottom-[-2px] before:left-0 before:w-0 before:h-[3px] before:bg-blue-500 before:transition-all hover:before:w-full">Car rentals</Link>
+                        <Link href="/" className="relative before:content-[''] before:absolute before:bottom-[-2px] before:left-0 before:w-0 before:h-[3px] before:bg-blue-500 before:transition-all hover:before:w-full">Attractions</Link>
+                        <Link href="/" className="relative before:content-[''] before:absolute before:bottom-[-2px] before:left-0 before:w-0 before:h-[3px] before:bg-blue-500 before:transition-all hover:before:w-full">Airport taxis</Link>
+                    </nav>
+                </DialogContent>
+            </Dialog>
+            <nav className="hidden lg:block">
                 <ul className="flex gap-4 text-white">
                     <li className="cursor-pointer">
                         <Popover>
@@ -49,21 +76,32 @@ export default function Header() {
                                 </Link>
                                 <div className="absolute bottom-0 left-0 w-full h-10 rounded-b-lg flex justify-center items-center border-collapse">
                                     <Link href="/" className="flex justify-center items-center w-full h-full border-t-2 border-blue-500 hover:bg-blue-200 duration-100 active:bg-blue-400">
-                                        <h4 className="text-blue-600 font-medium">See Demo Booking</h4>
+                                        <span className="text-blue-600 flex justify-center items-center gap-2">
+                                            <CirclePlay />
+                                            <h4 className="font-medium">See Demo Booking</h4>
+                                        </span>
                                     </Link>
                                     <Link href="/" className="w-full flex justify-center items-center h-full border-l-2 border-t-2 border-blue-500 hover:bg-blue-200 duration-100 active:bg-blue-400">
-                                        <h4 className="text-blue-600 font-medium">Contact Support</h4>
+                                        <span className="text-blue-600 flex justify-center items-center gap-2">
+                                            <Phone />
+                                            <h4 className="font-medium">Contact Support</h4>
+                                        </span>
                                     </Link>
                                 </div>
                             </PopoverContent>
                         </Popover>
                     </li>
-                    <li>Flights</li>
-                    <li>Car rentals</li>
-                    <li>Attractions</li>
-                    <li>Airport taxis</li>
+                    <li className="flex justify-center items-center">Flights <ChevronDown /></li>
+                    <li className="flex justify-center items-center">Car rentals <ChevronDown /></li>
+                    <li className="flex justify-center items-center">Attractions <ChevronDown /></li>
+                    <li className="flex justify-center items-center">Airport taxis <ChevronDown /></li>
                 </ul>
             </nav>
+            <button type="button" className="hidden lg:flex justify-center items-center gap-2 text-white">
+                <span className="sr-only">Login Button</span>
+                <span>Login</span>
+                <LogIn />
+            </button>
         </header>
     )
 }

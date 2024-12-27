@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { ChevronDown, CirclePlay, House, LogIn, Menu, MessageSquare, Phone, Plane } from "lucide-react";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 export default function Header() {
     return (
@@ -37,11 +38,22 @@ export default function Header() {
                         </DialogTitle>
                     </DialogHeader>
                     <nav className="flex flex-col justify-center items-center gap-4 font-medium text-lg text-blue-500">
-                        <Link href="/" className="relative before:content-[''] before:absolute before:bottom-[-2px] before:left-0 before:w-0 before:h-[3px] before:bg-blue-500 before:transition-all hover:before:w-full">Stays</Link>
-                        <Link href="/" className="relative before:content-[''] before:absolute before:bottom-[-2px] before:left-0 before:w-0 before:h-[3px] before:bg-blue-500 before:transition-all hover:before:w-full">Flights</Link>
-                        <Link href="/" className="relative before:content-[''] before:absolute before:bottom-[-2px] before:left-0 before:w-0 before:h-[3px] before:bg-blue-500 before:transition-all hover:before:w-full">Car rentals</Link>
-                        <Link href="/" className="relative before:content-[''] before:absolute before:bottom-[-2px] before:left-0 before:w-0 before:h-[3px] before:bg-blue-500 before:transition-all hover:before:w-full">Attractions</Link>
-                        <Link href="/" className="relative before:content-[''] before:absolute before:bottom-[-2px] before:left-0 before:w-0 before:h-[3px] before:bg-blue-500 before:transition-all hover:before:w-full">Airport taxis</Link>
+                        <li className="list-none">
+                            <DropdownMenu>
+                                <DropdownMenuTrigger className="flex justify-center items-center relative before:content-[''] before:absolute before:bottom-[-2px] before:left-0 before:w-0 before:h-[3px] before:bg-blue-500 before:transition-all hover:before:w-full">Stays<ChevronDown /></DropdownMenuTrigger>
+                                <DropdownMenuContent className="text-blue-500 font-medium">
+                                    <DropdownMenuItem className="flex justify-center items-center"><House />Book a Stay</DropdownMenuItem>
+                                    <DropdownMenuItem className="flex justify-center items-center"><Plane />Book a Flight</DropdownMenuItem>
+                                    <DropdownMenuItem className="flex justify-center items-center"><MessageSquare />Contact Our Support Team</DropdownMenuItem>
+                                    <DropdownMenuItem className="flex justify-center items-center"><CirclePlay />See Demo Booking</DropdownMenuItem>
+                                    <DropdownMenuItem className="flex justify-center items-center"><Phone />Contact Support</DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        </li>
+                        <Link href="/" className="flex justify-center items-center relative before:content-[''] before:absolute before:bottom-[-2px] before:left-0 before:w-0 before:h-[3px] before:bg-blue-500 before:transition-all hover:before:w-full">Flights<ChevronDown /></Link>
+                        <Link href="/" className="flex justify-center items-center relative before:content-[''] before:absolute before:bottom-[-2px] before:left-0 before:w-0 before:h-[3px] before:bg-blue-500 before:transition-all hover:before:w-full">Car rentals<ChevronDown /></Link>
+                        <Link href="/" className="flex justify-center items-center relative before:content-[''] before:absolute before:bottom-[-2px] before:left-0 before:w-0 before:h-[3px] before:bg-blue-500 before:transition-all hover:before:w-full">Attractions<ChevronDown /></Link>
+                        <Link href="/" className="flex justify-center items-center relative before:content-[''] before:absolute before:bottom-[-2px] before:left-0 before:w-0 before:h-[3px] before:bg-blue-500 before:transition-all hover:before:w-full">Airport taxis<ChevronDown /></Link>
                     </nav>
                     <DialogFooter>
                         <button type="button" className="flex justify-center items-center gap-2 font-medium relative before:content-[''] before:absolute before:bottom-[-4px] before:left-0 before:w-0 before:h-[3px] before:bg-black before:transition-all hover:before:w-full">

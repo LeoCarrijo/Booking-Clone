@@ -1,4 +1,4 @@
-export const tranding_data = [
+export const trending_data = [
 	{
 		id: 1,
 		src: "https://cf.bstatic.com/xdata/images/city/600x600/653646.jpg?k=0a8eb3999748f5b12b29f6bd5492a12b7f15a37535e572ea91403098d1588d38&o=",

@@ -1,10 +1,10 @@
-import * as z from "zod";
-import { useForm } from "react-hook-form";
+import * as z from 'zod';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
     Form,
     FormControl,
-    FormDescription,
+    // FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+// import { useRouter } from "next/router";
 
 export const formSchema = z.object({
     location: z.string().min(2).max(50),
@@ -28,7 +29,8 @@ export const formSchema = z.object({
 });
 
 export default function SearchForm() {
-    const router = useRouter();
+    // const router = useRouter();
+
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -62,13 +64,10 @@ export default function SearchForm() {
                                 Location
                                 {/* Ícone de cama */}
                             </FormLabel>
-                            <FormControl>
-                                <Input placeholder="shadcn" {...field} />
-                            </FormControl>
-                            <FormDescription>
-                                This is your public display name.
-                            </FormDescription>
                             <FormMessage />
+                            <FormControl>
+                                <Input placeholder="Salvador, BR" {...field} />
+                            </FormControl>
                         </FormItem>
                     )}
                 />

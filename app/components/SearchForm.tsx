@@ -1,3 +1,5 @@
+'use client'
+
 import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,7 +13,8 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
+import { BedDouble } from 'lucide-react';
 // import { useRouter } from "next/router";
 
 export const formSchema = z.object({
@@ -54,24 +57,25 @@ export default function SearchForm() {
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
-                <FormField
-                    control={form.control}
-                    name="location"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>
-                                Location
-                                {/* Ícone de cama */}
-                            </FormLabel>
-                            <FormMessage />
-                            <FormControl>
-                                <Input placeholder="Salvador, BR" {...field} />
-                            </FormControl>
-                        </FormItem>
-                    )}
-                />
-                <Button type="submit">Submit</Button>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col lg:flex-col lg:max-w-6xl lg:mx-auto items-center justify-center space-x-0 lg:space-x-2 space-y-4 lg:space-y-0 rounded-lg">
+                <div className="grid w-full lg:max-w-sm items-center gap-1.5">
+                    <FormField
+                        control={form.control}
+                        name="location"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel className='text-white flex'>
+                                    Location
+                                    <BedDouble className='ml-2 h-4 w-4 text-white' />
+                                </FormLabel>
+                                <FormMessage />
+                                <FormControl>
+                                    <Input placeholder="Salvador, BR" {...field} />
+                                </FormControl>
+                            </FormItem>
+                        )}
+                    />
+                </div>
             </form>
         </Form>
     )

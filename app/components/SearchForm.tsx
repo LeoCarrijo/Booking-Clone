@@ -6,16 +6,19 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
     Form,
     FormControl,
-    // FormDescription,
     FormField,
     FormItem,
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@/components/ui/popover"
 import { Input } from "@/components/ui/input";
-// import { Button } from "@/components/ui/button";
+
 import { BedDouble } from 'lucide-react';
-// import { useRouter } from "next/router";
 
 export const formSchema = z.object({
     location: z.string().min(2).max(50),
@@ -32,9 +35,6 @@ export const formSchema = z.object({
 });
 
 export default function SearchForm() {
-    // const router = useRouter();
-
-
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -50,8 +50,6 @@ export default function SearchForm() {
     })
 
     function onSubmit(values: z.infer<typeof formSchema>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
         console.log(values)
     }
 
@@ -72,6 +70,23 @@ export default function SearchForm() {
                                 <FormControl>
                                     <Input placeholder="Salvador, BR" {...field} />
                                 </FormControl>
+                            </FormItem>
+                        )}
+                    />
+                </div>
+                <div className='grid w-full lg:max-w-sm items-center gap-1.5'>
+                    <FormField
+                        control={form.control}
+                        name="dates"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Dates</FormLabel>
+                                <FormMessage />
+                                <Popover>
+                                    <PopoverTrigger asChild>Open</PopoverTrigger>
+                                    <PopoverContent>Place content for the popover here.</PopoverContent>
+                                </Popover>
+
                             </FormItem>
                         )}
                     />

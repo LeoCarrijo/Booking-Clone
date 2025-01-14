@@ -94,7 +94,7 @@ export default function SearchForm() {
                                                 name="dates"
                                                 variant={"outline"}
                                                 className={cn(
-                                                    "w-[300px] justify-start text-left font-normal", !field.value.from && "text-muted-foreground"
+                                                    "w-full lg:w-[300px] justify-start text-left font-normal", !field.value.from && "text-muted-foreground"
                                                 )}
                                             >
                                                 <CalendarIcon className='mr-3 h-4 w-4 opacity-50' />

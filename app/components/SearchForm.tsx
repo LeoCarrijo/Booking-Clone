@@ -175,6 +175,11 @@ export default function SearchForm() {
                             )}
                         />
                     </div>
+                    <div className='mt-auto'>
+                        <Button type='submit' className='bg-blue-500 text-base'>
+                            Search
+                        </Button>
+                    </div>
                 </div>
             </form>
         </Form>

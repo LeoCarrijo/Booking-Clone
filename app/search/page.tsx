@@ -26,6 +26,12 @@ async function fetchReviews(url: URL) {
     return data
 }
 
+async function fetchRatings(url: URL) {
+    const response = await fetch(`http://localhost:3000/api/getRatings?url=${url}`)
+    const data = await response.json()
+    return data
+}
+
 export default async function SearchPage({ searchParams }: Props) {
     if (!searchParams.url) return notFound()
 
@@ -48,11 +54,13 @@ export default async function SearchPage({ searchParams }: Props) {
     const images: string[] = await fetchImages(finalURL)
     const tiers: string[] = await fetchTiers(finalURL)
     const reviews: string[] = await fetchReviews(finalURL)
+    const rating: string[] = await fetchRatings(finalURL)
     const allAdComponents: AdComponent[] = titles.map((title, index) => ({
         title,
         image: images[index],
         tier: tiers[index],
-        reviews: reviews[index]
+        reviews: reviews[index],
+        rating: rating[index]
     }))
 
     return (
@@ -63,6 +71,7 @@ export default async function SearchPage({ searchParams }: Props) {
                         <h2>{adComponent.title}</h2>
                         <h2>{adComponent.tier}</h2>
                         <h2>{adComponent.reviews}</h2>
+                        <h2>{adComponent.rating}</h2>
                         <Image
                             src={adComponent.image}
                             width={100}

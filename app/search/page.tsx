@@ -14,6 +14,12 @@ async function fetchImages(url: URL) {
     return data
 }
 
+async function fetchTiers(url: URL) {
+    const response = await fetch(`http://localhost:3000/api/getTiers?url=${url}`)
+    const data = await response.json()
+    return data
+}
+
 export default async function SearchPage({ searchParams }: Props) {
     if (!searchParams.url) return notFound()
 
@@ -34,7 +40,12 @@ export default async function SearchPage({ searchParams }: Props) {
 
     const titles: string[] = await fetchTitles(finalURL)
     const images: string[] = await fetchImages(finalURL)
-    const allAdComponents: AdComponent[] = titles.map((title, index) => ({ title, image: images[index] }));
+    const tiers: string[] = await fetchTiers(finalURL)
+    const allAdComponents: AdComponent[] = titles.map((title, index) => ({
+        title,
+        image: images[index],
+        tier: tiers[index]
+    }))
 
     return (
         <div>
@@ -42,6 +53,7 @@ export default async function SearchPage({ searchParams }: Props) {
                 {allAdComponents.map((adComponent) => (
                     <li key={adComponent.title}>
                         <h2>{adComponent.title}</h2>
+                        <h2>{adComponent.tier}</h2>
                         <Image
                             src={adComponent.image}
                             width={100}

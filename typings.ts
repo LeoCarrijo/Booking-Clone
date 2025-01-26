@@ -23,4 +23,5 @@ export type BookingURL = {
 export type AdComponent = {
 	title: string;
 	image: string;
+	tier: string;
 };

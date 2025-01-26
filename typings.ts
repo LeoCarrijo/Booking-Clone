@@ -19,3 +19,8 @@ export type BookingURL = {
 	checkin: string;
 	checkout: string;
 };
+
+export type AdComponent = {
+	title: string;
+	image: string;
+};

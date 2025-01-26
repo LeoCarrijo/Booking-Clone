@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { notFound } from "next/navigation"
-import type { Props, BookingURL } from "@/typings"
+import type { Props, BookingURL, AdComponent } from "@/typings"
 
 async function fetchTitles(url: URL) {
     const response = await fetch(`http://localhost:3000/api/getTitles?url=${url}`)
@@ -16,6 +16,7 @@ async function fetchImages(url: URL) {
 
 export default async function SearchPage({ searchParams }: Props) {
     if (!searchParams.url) return notFound()
+
     const URLParams: BookingURL = {
         url: searchParams.url,
         group_adults: searchParams.group_adults,
@@ -30,27 +31,25 @@ export default async function SearchPage({ searchParams }: Props) {
     finalURL.searchParams.set("no_rooms", URLParams.no_rooms)
     finalURL.searchParams.set("checkin", URLParams.checkin)
     finalURL.searchParams.set("checkout", URLParams.checkout)
+
     const titles: string[] = await fetchTitles(finalURL)
     const images: string[] = await fetchImages(finalURL)
+    const allAdComponents: AdComponent[] = titles.map((title, index) => ({ title, image: images[index] }));
 
     return (
         <div>
             <ul>
-                {titles.map((title) => {
-                    return <li key={title}>{title}</li>
-                })}
-            </ul>
-            <ul className="flex">
-                {images.map((image) => {
-                    return <li key={image}>
+                {allAdComponents.map((adComponent) => (
+                    <li key={adComponent.title}>
+                        <h2>{adComponent.title}</h2>
                         <Image
-                            src={image}
+                            src={adComponent.image}
                             width={100}
                             height={100}
                             alt="Image"
                         />
                     </li>
-                })}
+                ))}
             </ul>
         </div>
     )

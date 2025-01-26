@@ -1,13 +1,9 @@
 import * as cheerio from "cheerio";
-import { NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 import { getBaseHTML } from "../route";
 
-async function getImages() {
-	const $ = cheerio.load(
-		await getBaseHTML(
-			"https://www.booking.com/searchresults.html?ss=Salvador&group_adults=3&group_children=0&no_rooms=1&checkin=2025-2-11&checkout=2025-2-13",
-		),
-	);
+async function getImages(url: string) {
+	const $ = cheerio.load(await getBaseHTML(url));
 	const images: string[] = [];
 	$(".f9671d49b1").each((i, e) => {
 		images.push(`${$(e).attr("src")}`);
@@ -15,7 +11,12 @@ async function getImages() {
 	return images;
 }
 
-export async function GET() {
-	const images = await getImages();
+export async function GET(request: NextRequest) {
+	const { searchParams } = new URL(request.url);
+	const url = searchParams.get("url");
+	if (!url) {
+		return NextResponse.json({ error: "URL is required" }, { status: 400 });
+	}
+	const images = await getImages(url);
 	return NextResponse.json(images);
 }

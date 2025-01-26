@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
 		remotePatterns: [
 			{
 				protocol: "https",
-				hostname: "stardewvalleywiki.com",
+				hostname: "cf.bstatic.com",
 				pathname: "/**",
 			},
 		],

@@ -24,4 +24,5 @@ export type AdComponent = {
 	title: string;
 	image: string;
 	tier: string;
+	reviews: string;
 };

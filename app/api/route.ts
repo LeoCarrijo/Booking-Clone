@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 import axios from "axios";
 import * as cheerio from "cheerio";
 
@@ -13,10 +13,14 @@ async function fetchData(url: string) {
 	return response.data;
 }
 
-export async function GET() {
-	const content = await fetchData("https://stardewvalleywiki.com/Villagers");
+export async function GET(request: NextRequest) {
+	const { searchParams } = new URL(request.url);
+	const url = searchParams.get("url");
+	if (!url) {
+		return NextResponse.json({ error: "URL is required" }, { status: 400 });
+	}
+	const content = await fetchData(url);
 	const $ = cheerio.load(content);
-
 	return NextResponse.json({
 		html: $("body").html(),
 	});

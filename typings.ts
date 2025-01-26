@@ -2,7 +2,16 @@ export type Props = {
 	searchParams: SearchParams;
 };
 
-export type SearchParams = {
+type SearchParams = {
+	url: URL;
+	group_adults: string;
+	group_children: string;
+	no_rooms: string;
+	checkin: string;
+	checkout: string;
+};
+
+export type BookingURL = {
 	url: URL;
 	group_adults: string;
 	group_children: string;

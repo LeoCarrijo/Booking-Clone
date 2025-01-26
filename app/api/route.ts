@@ -2,8 +2,8 @@ import { type NextRequest, NextResponse } from "next/server";
 import axios from "axios";
 import * as cheerio from "cheerio";
 
-export async function getBaseHTML() {
-	const response = await fetch("http://localhost:3000/api");
+export async function getBaseHTML(url: string) {
+	const response = await fetch(`http://localhost:3000/api?url=${url}`);
 	const { html } = await response.json();
 	return html;
 }

@@ -11,6 +11,7 @@ export default {
 		extend: {
 			gridTemplateColumns: {
 				"popover-content": "20% 80%",
+				adComponent: "1fr 2fr",
 			},
 			colors: {
 				background: "hsl(var(--background))",

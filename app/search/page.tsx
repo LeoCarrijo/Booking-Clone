@@ -65,7 +65,21 @@ export default async function SearchPage({ searchParams }: Props) {
 
     return (
         <div>
-            <ul>
+            <h1>Resultados Encontrados:</h1>
+            <section>
+                <div className="bg-cyan-50 grid grid-cols-adComponent grid-rows-1">
+                    <div className="w-full bg-cyan-300">
+
+                    </div>
+                    <div>
+                        <h2>Titulo</h2>
+                        <h2>Tier</h2>
+                        <h2>Reviews</h2>
+                        <h2>Rating</h2>
+                    </div>
+                </div>
+            </section>
+            {/* <ul className="flex flex-col">
                 {allAdComponents.map((adComponent) => (
                     <li key={adComponent.title}>
                         <h2>{adComponent.title}</h2>
@@ -80,7 +94,7 @@ export default async function SearchPage({ searchParams }: Props) {
                         />
                     </li>
                 ))}
-            </ul>
+            </ul> */}
         </div>
     )
 }

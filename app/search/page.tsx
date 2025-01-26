@@ -1,4 +1,7 @@
 import Image from "next/image"
+import { notFound } from "next/navigation"
+import type { Props } from "@/typings"
+
 
 const dummyURL = "https://www.booking.com/searchresults.html?ss=Salvador&group_adults=3&group_children=0&no_rooms=1&checkin=2025-2-11&checkout=2025-2-13"
 
@@ -14,9 +17,17 @@ async function fetchImages(url: string) {
     return data
 }
 
-export default async function SearchPage() {
+export default async function SearchPage({ searchParams }: Props) {
+    if (!searchParams.url) return notFound()
     const titles: string[] = await fetchTitles(dummyURL)
     const images: string[] = await fetchImages(dummyURL)
+    const url = searchParams.url
+    const group_adults = searchParams.group_adults
+    const group_children = searchParams.group_children
+    const no_rooms = searchParams.no_rooms
+    const checkin = searchParams.checkin
+    const checkout = searchParams.checkout
+    console.log(url, group_adults, group_children, no_rooms, checkin, checkout)
 
     return (
         <div>

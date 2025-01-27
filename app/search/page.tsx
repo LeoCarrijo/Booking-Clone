@@ -65,27 +65,30 @@ export default async function SearchPage({ searchParams }: Props) {
 
     return (
         <div>
-            <h1>Resultados Encontrados:</h1>
-            <section className="border-collapse">
-                <div className="grid grid-cols-adComponent grid-rows-1 p-2 gap-2 border-2 border-[#1E40AF]">
-                    <div className="w-full bg-cyan-300 border border-[#1E40AF] shadow-sm shadow-[#1e40af3a]">
+            <section>
+                {allAdComponents.map((adComponent) => {
+                    return (
+                        <div key={adComponent.title} className="grid grid-cols-adComponent grid-rows-1 p-2 gap-2 border-2 border-[#1E40AF]">
+                            <div className="w-full bg-cyan-300 border border-[#1E40AF] shadow-sm shadow-[#1e40af58]">
 
-                    </div>
-                    <div className="flex flex-col">
-                        <h2 className="font-bold">Pousada das Hortolândias</h2>
-                        <div className="flex items-center gap-2">
-                            <div className="bg-[#1E40AF] w-[35px] h-[35px] rounded-lg flex justify-center items-center text-white">
-                                9.0
                             </div>
-                            <h2>Excelente</h2>
+                            <div className="flex flex-col">
+                                <h2 className="font-bold">{adComponent.title}</h2>
+                                <div className="flex items-center gap-2">
+                                    <div className="bg-[#1E40AF] w-[35px] h-[35px] rounded-lg flex justify-center items-center text-white">
+                                        {adComponent.rating}
+                                    </div>
+                                    <h2>{adComponent.tier}</h2>
+                                </div>
+                                <h2>{adComponent.reviews}</h2>
+                                <div className="flex flex-col self-end">
+                                    <h2>3 noites, 2 adultos, 1 criança</h2>
+                                    <h2 className="self-end font-bold text-2xl">R$ 1.321</h2>
+                                </div>
+                            </div>
                         </div>
-                        <h2>3.291 Avaliações</h2>
-                        <div className="flex flex-col self-end">
-                            <h2>3 noites, 2 adultos, 1 criança</h2>
-                            <h2 className="self-end font-bold text-2xl">R$ 1.321</h2>
-                        </div>
-                    </div>
-                </div>
+                    )
+                })}
             </section>
         </div>
     )

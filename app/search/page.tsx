@@ -1,4 +1,3 @@
-import Image from "next/image"
 import { notFound } from "next/navigation"
 import type { Props, BookingURL, AdComponent } from "@/typings"
 
@@ -65,11 +64,12 @@ export default async function SearchPage({ searchParams }: Props) {
 
     return (
         <div>
+            <h1 className="p-2 text-xl"> {allAdComponents.length} Resultados encontrados:</h1>
             <section>
                 {allAdComponents.map((adComponent) => {
                     return (
-                        <div key={adComponent.title} className="grid grid-cols-adComponent grid-rows-1 p-2 gap-2 border-2 border-[#1E40AF]">
-                            <div className="w-full bg-cyan-300 border border-[#1E40AF] shadow-sm shadow-[#1e40af58]">
+                        <div key={adComponent.title} className="grid grid-cols-adComponent grid-rows-1 p-2 gap-2 border-2 border-[#1E40AF] my-[-2px]">
+                            <div className="w-full bg-cyan-300 border border-[#1E40AF] shadow-sm shadow-[#1e40af58] rounded-sm bg-local bg-center bg-no-repeat bg-cover" style={{ backgroundImage: `url(${adComponent.image})` }}>
 
                             </div>
                             <div className="flex flex-col">

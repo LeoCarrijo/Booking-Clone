@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation"
 import type { Props, BookingURL, AdComponent } from "@/typings"
+import Link from "next/link"
+import { Hotel } from "lucide-react"
 
 async function fetchTitles(url: URL) {
     const response = await fetch(`http://localhost:3000/api/getTitles?url=${url}`)
@@ -63,12 +65,12 @@ export default async function SearchPage({ searchParams }: Props) {
     }))
 
     return (
-        <div>
-            <h1 className="p-2 text-xl"> {allAdComponents.length} Resultados encontrados:</h1>
-            <section>
+        <div className="bg-[#1E40AF]">
+            <h1 className="flex gap-2 p-2 text-xl text-white justify-center items-center"> {allAdComponents.length} Resultados encontrados <Hotel /></h1>
+            <section className="flex flex-col gap-2">
                 {allAdComponents.map((adComponent) => {
                     return (
-                        <div key={adComponent.title} className="grid grid-cols-adComponent grid-rows-1 p-2 gap-2 border-2 border-[#1E40AF] my-[-2px]">
+                        <Link href="https://google.com" key={adComponent.title} className="grid grid-cols-adComponent grid-rows-1 p-2 gap-2 border-2 border-[#002bba] my-[-2px] duration-150 m-2 rounded-sm bg-white hover:bg-[#e4ebff] active:bg-[#002bba] active:text-white">
                             <div className="w-full bg-cyan-300 border border-[#1E40AF] shadow-sm shadow-[#1e40af58] rounded-sm bg-local bg-center bg-no-repeat bg-cover" style={{ backgroundImage: `url(${adComponent.image})` }}>
 
                             </div>
@@ -86,7 +88,7 @@ export default async function SearchPage({ searchParams }: Props) {
                                     <h2 className="self-end font-bold text-2xl">R$ 1.321</h2>
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     )
                 })}
             </section>

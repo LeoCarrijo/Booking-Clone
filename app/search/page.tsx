@@ -33,6 +33,12 @@ async function fetchRatings(url: URL) {
     return data
 }
 
+async function fetchLinks(url: URL) {
+    const response = await fetch(`http://localhost:3000/api/getLinks?url=${url}`)
+    const data = await response.json()
+    return data
+}
+
 export default async function SearchPage({ searchParams }: Props) {
     if (!searchParams.url) return notFound()
 
@@ -56,12 +62,14 @@ export default async function SearchPage({ searchParams }: Props) {
     const tiers: string[] = await fetchTiers(finalURL)
     const reviews: string[] = await fetchReviews(finalURL)
     const rating: string[] = await fetchRatings(finalURL)
+    const link: string[] = await fetchLinks(finalURL)
     const allAdComponents: AdComponent[] = titles.map((title, index) => ({
         title,
         image: images[index],
         tier: tiers[index],
         reviews: reviews[index],
-        rating: rating[index]
+        rating: rating[index],
+        link: link[index]
     }))
 
     return (
@@ -70,7 +78,7 @@ export default async function SearchPage({ searchParams }: Props) {
             <section className="flex flex-col gap-2">
                 {allAdComponents.map((adComponent) => {
                     return (
-                        <Link href="https://google.com" key={adComponent.title} className="grid grid-cols-adComponent grid-rows-1 p-2 gap-2 border-2 border-[#002bba] my-[-2px] duration-150 m-2 rounded-sm bg-white hover:bg-[#e4ebff] active:bg-[#002bba] active:text-white">
+                        <Link href={adComponent.link} key={adComponent.title} className="grid grid-cols-adComponent grid-rows-1 p-2 gap-2 border-2 border-[#002bba] my-[-2px] duration-150 m-2 rounded-sm bg-white hover:bg-[#e4ebff] active:bg-[#002bba] active:text-white">
                             <div className="w-full bg-cyan-300 border border-[#1E40AF] shadow-sm shadow-[#1e40af58] rounded-sm bg-local bg-center bg-no-repeat bg-cover" style={{ backgroundImage: `url(${adComponent.image})` }}>
 
                             </div>

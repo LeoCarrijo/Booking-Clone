@@ -26,4 +26,5 @@ export type AdComponent = {
 	tier: string;
 	reviews: string;
 	rating: string;
+	link: string;
 };

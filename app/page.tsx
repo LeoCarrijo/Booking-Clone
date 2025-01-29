@@ -4,9 +4,9 @@ import { trending_data } from "./data/trending"
 
 export default function Home() {
   return (
-    <main className="bg-blue-800">
+    <main className="bg-blue-800 h-full">
       <section className="max-w-7xl mx-auto pb-4 px-3 lg:px-0">
-        <h1 className="text-white font-bold text-5xl pb-2">Find your next Stay</h1>
+        <h1 className="text-white font-bold text-4xl md:5xl lg:5xl pb-2">Find your next Stay</h1>
         <h3 className="text-white">Search low prices on hotels, homes and much more...</h3>
       </section>
       <section className="m-4 mt-0 -mb-14 px-2 lg:px-4">

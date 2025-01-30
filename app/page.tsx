@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { Skeleton } from "@/components/ui/skeleton";
 import SearchForm from "./components/SearchForm";
 import { trending_data } from "./data/trending"
 

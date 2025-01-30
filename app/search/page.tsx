@@ -2,6 +2,7 @@ import { notFound } from "next/navigation"
 import type { Props, BookingURL, AdComponent } from "@/typings"
 import Link from "next/link"
 import { Hotel } from "lucide-react"
+import { Skeleton } from "@/components/ui/skeleton"
 
 async function fetchTitles(url: URL) {
     const response = await fetch(`http://localhost:3000/api/getTitles?url=${url}`)

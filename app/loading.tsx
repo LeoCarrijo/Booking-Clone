@@ -12,7 +12,7 @@ export default function LoadingPage() {
                 {[...Array(10)].map((_, i) => {
                     return (
                         // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-                        <div key={i} className="grid grid-cols-adComponent grid-rows-1 p-2 gap-2 border-2 border-[#002bba] my-[-2px] duration-150 m-2 rounded-sm bg-white hover:bg-[#e4ebff] active:bg-[#002bba] active:text-white">
+                        <div key={i} className="grid grid-cols-adComponent grid-rows-1 p-2 gap-2 border-2 border-[#002bba] my-[-2px] duration-150 m-2 rounded-sm bg-white hover:bg-[#e4ebff]">
                             <Skeleton className="w-full shadow-sm shadow-[#1e40af58] rounded-sm h-[150px]" />
                             <div className="flex flex-col h-full">
                                 <Skeleton className="h-4 w-full rounded-full" />

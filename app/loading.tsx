@@ -7,9 +7,9 @@ export default function LoadingPage() {
             <div className="flex justify-center py-2">
                 <div className="w-10 h-10 bg-white rounded-full animate-bounce" />
             </div>
-            <h1 className="flex gap-2 p-2 text-xl text-white justify-center items-center animate-pulse">Buscando Resultados</h1>
-            <div className="flex flex-col gap-2 md:max-w-3xl md:m-auto lg:max-w-7xl">
-                {[...Array(5)].map((_, i) => {
+            <h1 className="flex gap-2 p-2 text-xl text-white justify-center items-center animate-pulse lg:text-2xl lg:pb-4">Buscando Resultados</h1>
+            <div className="flex flex-col gap-2 md:max-w-3xl md:m-auto lg:max-w-7xl lg:grid lg:grid-cols-2 lg:gap-y-4 lg:gap-x-2 pb-10">
+                {[...Array(10)].map((_, i) => {
                     return (
                         // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                         <div key={i} className="grid grid-cols-adComponent grid-rows-1 p-2 gap-2 border-2 border-[#002bba] my-[-2px] duration-150 m-2 rounded-sm bg-white hover:bg-[#e4ebff] active:bg-[#002bba] active:text-white">

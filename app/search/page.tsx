@@ -2,7 +2,6 @@ import { notFound } from "next/navigation"
 import type { Props, BookingURL, AdComponent } from "@/typings"
 import Link from "next/link"
 import { Hotel } from "lucide-react"
-import { Skeleton } from "@/components/ui/skeleton"
 
 async function fetchTitles(url: URL) {
     const response = await fetch(`http://localhost:3000/api/getTitles?url=${url}`)
@@ -75,8 +74,8 @@ export default async function SearchPage({ searchParams }: Props) {
 
     return (
         <div className="bg-[#1E40AF]">
-            <h1 className="flex gap-2 p-2 text-xl text-white justify-center items-center"> {allAdComponents.length} Resultados encontrados <Hotel /></h1>
-            <section className="flex flex-col gap-2 md:max-w-3xl md:m-auto lg:max-w-7xl">
+            <h1 className="flex gap-2 p-2 text-xl text-white justify-center items-center lg:text-2xl lg:pb-4"> {allAdComponents.length} Resultados encontrados <Hotel /></h1>
+            <section className="flex flex-col gap-2 md:max-w-3xl md:m-auto lg:max-w-7xl lg:grid lg:grid-cols-2 lg:gap-y-4 lg:gap-x-2 pb-10">
                 {allAdComponents.map((adComponent) => {
                     return (
                         <Link href={adComponent.link} key={adComponent.title} className="grid grid-cols-adComponent grid-rows-1 p-2 gap-2 border-2 border-[#002bba] my-[-2px] duration-150 m-2 rounded-sm bg-white hover:bg-[#e4ebff] active:bg-[#002bba] active:text-white">
